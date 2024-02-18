@@ -29,7 +29,7 @@
     },
     "plugins": [
       {
-        "name": "typescript-styled-plugin",
+        "name": "@styled/typescript-styled-plugin",
         "lint": {
           "validProperties": [
             "shadow-color",
@@ -42,7 +42,9 @@
             "margin-horizontal",
             "tint-color",
             "aspect-ratio",
-            "elevation"
+            "elevation",
+            "include-font-padding",
+            "text-align-vertical"
           ]
         }
       }
