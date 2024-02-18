@@ -1,13 +1,9 @@
-import {ReactElement, useState} from 'react'
+import {type ReactElement, useEffect, useState} from 'react'
 import {SafeAreaView, ScrollView, StatusBar, useColorScheme} from 'react-native'
 import {Colors} from 'react-native/Libraries/NewAppScreen'
+import WidgetDefaults from '../widget'
 import TodoListItem from './components/TodoListItem'
-
-type TodoItem = {
-  id: number
-  isCompleted: boolean
-  text: string
-}
+import {type TodoItem} from './types'
 
 const MainPage = (): ReactElement => {
   const isDarkMode = useColorScheme() === 'dark'
@@ -46,6 +42,10 @@ const MainPage = (): ReactElement => {
       prev.map(i => (i.id === id ? {...i, isCompleted: !i.isCompleted} : i)),
     )
   }
+
+  useEffect(() => {
+    void WidgetDefaults.set(todoItem)
+  }, [todoItem])
 
   return (
     <SafeAreaView style={backgroundStyle}>

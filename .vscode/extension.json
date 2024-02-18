@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "formulahendry.auto-rename-tag",
+    "naumovs.color-highlight",
+    "vivaxy.vscode-conventional-commits",
+    "dbaeumer.vscode-eslint",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "msjsdiag.vscode-react-native",
+    "gruntfuggly.todo-tree",
+    "pflannery.vscode-versionlens",
+    "streetsidesoftware.code-spell-checker",
+    "github.vscode-github-actions",
+    "meta.relay"
+  ]
+}

@@ -1,10 +1,23 @@
 module.exports = {
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended', // uses typescript-specific linting rules
-    'prettier', // disables react-specific linting rules that conflict with prettier
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
   ],
-  plugins: ['import', 'prettier', 'unused-imports'],
+  plugins: [
+    'import',
+    'prettier',
+    'unused-imports',
+    'react',
+    'react-native',
+    'react-hooks',
+  ],
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+  },
   ignorePatterns: ['.eslintrc.js', 'node_modules/'],
   overrides: [
     {
@@ -62,7 +75,7 @@ module.exports = {
             ignoreRestSiblings: true,
           },
         ],
-        'no-return-await': 'off', // for call stack. @link https://jojoldu.tistory.com/699
+        'no-return-await': 'off',
       },
     },
   ],
@@ -71,13 +84,10 @@ module.exports = {
     'padding-line-between-statements': [
       'warn',
       {blankLine: 'always', prev: '*', next: 'return'},
-      // Always require blank lines after directive (like 'use-strict'), except between directives
       {blankLine: 'always', prev: 'directive', next: '*'},
       {blankLine: 'any', prev: 'directive', next: 'directive'},
-      // Always require blank lines after import, except between imports
       {blankLine: 'always', prev: 'import', next: '*'},
       {blankLine: 'any', prev: 'import', next: 'import'},
-      // Always require blank lines before and after every sequence of variable declarations and export
       {
         blankLine: 'always',
         prev: '*',
@@ -93,17 +103,6 @@ module.exports = {
         prev: ['const', 'let', 'var', 'export'],
         next: ['const', 'let', 'var', 'export'],
       },
-      // {
-      //   blankLine: 'always',
-      //   prev: ['multiline-const', 'multiline-expression', 'multiline-let'],
-      //   next: '*',
-      // },
-      // {
-      //   blankLine: 'always',
-      //   prev: '*',
-      //   next: ['multiline-const', 'multiline-expression', 'multiline-let'],
-      // },
-      // Always require blank lines before and after class declaration, if, do/while, switch, try
       {
         blankLine: 'always',
         prev: '*',
@@ -115,7 +114,6 @@ module.exports = {
         next: '*',
       },
     ],
-
     'no-useless-catch': 'off',
     'unused-imports/no-unused-imports': 'error',
     'unused-imports/no-unused-vars': [
@@ -127,13 +125,9 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
-
-    // import plugins
     'import/no-unresolved': 'error',
     'import/no-unused-modules': 'error',
-    // "import/named": "error",
     'import/namespace': 'error',
-    // "import/default": "error",
     'import/export': 'error',
     'import/order': [
       'error',
@@ -152,8 +146,6 @@ module.exports = {
     'default-param-last': 'warn',
     curly: ['warn', 'all'],
     'prefer-arrow-callback': 'warn',
-    // specify the maximum length of a line in your program
-    // https://eslint.org/docs/rules/max-len
     'max-len': [
       'error',
       {
@@ -166,12 +158,40 @@ module.exports = {
         ignoreTemplateLiterals: true,
       },
     ],
+    '@typescript-eslint/explicit-function-return-type': [
+      'warn',
+      {
+        allowExpressions: true,
+      },
+    ],
+    'react/prop-types': 'off',
+    'react-native/no-unused-styles': 1,
+    'react-native/no-single-element-style-arrays': 2,
+    'react-native/no-inline-styles': 1,
+    'react/jsx-no-bind': 'off',
+    'react/require-optimization': 2,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'max-params': ['error', 3],
+    'react/self-closing-comp': [
+      'warn',
+      {
+        component: true,
+        html: true,
+      },
+    ],
   },
   settings: {
     'import/resolver': {
       typescript: {
-        alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+        alwaysTryTypes: true,
       },
     },
+    react: {
+      version: 'detect',
+    },
+  },
+  env: {
+    'react-native/react-native': true,
   },
 }
